@@ -7,100 +7,89 @@
 
 
 #ifndef BUILD_INFORMATION
-# define BUILD_INFORMATION "locally built"
+#define BUILD_INFORMATION "locally built on " __DATE__ " at " __TIME__
 #endif
 
-namespace jj {
-namespace Macros {
-namespace {
 
-}
-}
-}
+namespace kaleidoscope {
+namespace config {
 
-
-namespace jj {
-namespace Macros {
-
-void configure(void) {
-
-}
-
-static void versionInfoMacro(uint8_t keyState) {
-  if (keyToggledOn(keyState)) {
-    ::Macros.type(PSTR("Keyboardio Model 01 - Kaleidoscope "));
-    ::Macros.type(PSTR(BUILD_INFORMATION));
-  }
-}
-
-static void anyKeyMacro(uint8_t keyState) {
-  static Key lastKey;
-  bool toggledOn = false;
-  if (keyToggledOn(keyState)) {
-    lastKey.setKeyCode(Key_A.getKeyCode() + (uint8_t)(millis() % 36));
-    toggledOn = true;
+static void typeVersionInfo(KeyEvent &event) {
+  if (!keyToggledOn(event.state)) {
+    return;
   }
 
-  if (keyIsPressed(keyState))
-    Kaleidoscope.hid().keyboard().pressKey(lastKey, toggledOn);
+  ::Macros.type(PSTR("Kaleidoscope "));
+  ::Macros.type(PSTR(BUILD_INFORMATION));
 }
 
-static void lock(uint8_t keyState) {
-  if (keyToggledOn(keyState)) {
-    // ::Macros.play(MACRO(Tr(Consumer_Pause)));
-    // ::Macros.play(MACRO(Tr(Consumer_Mute)));
-    ::LEDOff.activate();
-    ::Macros.play(MACRO(Tr(LCTRL(LGUI(Key_Q)))));
+static void lockMac(KeyEvent &event) {
+  if (!keyToggledOn(event.state)) {
+    return;
   }
+  // ::Macros.play(MACRO(Tr(Consumer_Pause)));
+  // ::Macros.play(MACRO(Tr(Consumer_Mute)));
+  ::LEDOff.activate();
+  ::Macros.play(MACRO(Tr(LCTRL(LGUI(Key_Q)))));
 }
 
-static void xcodeSelectToMark(uint8_t keyState) {
-  if (keyToggledOn(keyState)) {
-    ::Macros.play(MACRO(Tr(LCTRL(Key_X)), Tr(LCTRL(Key_M))));
+static void sleepMac(KeyEvent &event) {
+  if (!keyToggledOn(event.state)) {
+    return;
   }
+  ::Macros.play(MACRO(Tr(LGUI(LALT(Consumer_Eject)))));
 }
 
-static void xcodeSwapWithMark(uint8_t keyState) {
-  if (keyToggledOn(keyState)) {
-    ::Macros.play(MACRO(Tr(LCTRL(Key_X)), Tr(LCTRL(Key_X))));
+static void typeAUmlaut(KeyEvent &event) {
+  if (!keyToggledOn(event.state)) {
+    ::Macros.type(PSTR("not on; "));
+    // TODO
+    return;
   }
+  ::Macros.type(PSTR("on; "));
+  ::Macros.play(MACRO(Tr(LALT(Key_U)), Tr(Key_A)));
 }
 
+static void typeOUmlaut(KeyEvent &event) {
+  if (!keyToggledOn(event.state)) {
+    // TODO
+    return;
+  }
+  ::Macros.play(MACRO(Tr(LALT(Key_U)), Tr(Key_O)));
+}
 
-namespace {
+static void typeUUmlaut(KeyEvent &event) {
+  if (!keyToggledOn(event.state)) {
+    // TODO
+    return;
+  }
+  ::Macros.play(MACRO(Tr(LALT(Key_U)), Tr(Key_U)));
+}
 
+static void typeEszett(KeyEvent &event) {
+  if (!keyToggledOn(event.state)) {
+    return;
+  }
+  ::Macros.play(MACRO(Tr(LALT(Key_S))));
+}
 
-} // namespace
-} // namespace Macros
+static void xcodeSelectToMark(KeyEvent &event) {
+  if (!keyToggledOn(event.state)) {
+    return;
+  }
+  ::Macros.play(MACRO(Tr(LCTRL(Key_X)), Tr(LCTRL(Key_M))));
+}
+
+static void xcodeSwapWithMark(KeyEvent &event) {
+  if (!keyToggledOn(event.state)) {
+    return;
+  }
+  ::Macros.play(MACRO(Tr(LCTRL(Key_X)), Tr(LCTRL(Key_X))));
+}
+
+} // namespace config
 } // namespacce jj
 
-
-const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
-  switch (macroIndex) {
-
-  case MACRO_VERSION_INFO:
-    jj::Macros::versionInfoMacro(keyState);
-    break;
-
-  case MACRO_ANY:
-    jj::Macros::anyKeyMacro(keyState);
-    break;
-
-  case MACRO_LOCK:
-    jj::Macros::lock(keyState);
-    break;
-
-  case MACRO_XCODE_SELECT_TO_MARK:
-    jj::Macros::xcodeSelectToMark(keyState);
-    break;
-
-  case MACRO_XCODE_SWAP_WITH_MARK:
-    jj::Macros::xcodeSwapWithMark(keyState);
-    break;
-
-  }
-  return MACRO_NONE;
-}
 
 
 

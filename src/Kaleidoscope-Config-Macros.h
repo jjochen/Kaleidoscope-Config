@@ -24,4 +24,4 @@
 
 #pragma once
 
-#include <Kaleidoscope/Macros.h>
+#include <kaleidoscope/Macros.h>

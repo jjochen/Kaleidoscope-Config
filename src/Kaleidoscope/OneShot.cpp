@@ -5,13 +5,13 @@
 
 
 namespace jj {
-namespace OneShot {
+namespace config {
 
-void configure(void) {
+void setup_one_shot(void) {
   ::OneShot.enableStickablity();
-  ::OneShot.time_out = 2500;
-  ::OneShot.hold_time_out = 250;
-  ::OneShot.double_tap_time_out = 250;
+  ::OneShot.setTimeout(2500);
+  ::OneShot.setHoldTimeout(250);
+  ::OneShot.setDoubleTapTimeout(250);
 }
 
 } // namespace OneShot

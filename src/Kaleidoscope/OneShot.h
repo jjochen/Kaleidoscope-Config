@@ -3,9 +3,9 @@
 #pragma once
 
 namespace jj {
-namespace OneShot {
+namespace config {
 
-void configure(void);
+void setup_one_shot(void);
 
 }
 }

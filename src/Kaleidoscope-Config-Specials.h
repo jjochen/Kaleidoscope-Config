@@ -24,4 +24,4 @@
 
 #pragma once
 
-#include <Kaleidoscope/Specials.h>
+#include <kaleidoscope/Specials.h>

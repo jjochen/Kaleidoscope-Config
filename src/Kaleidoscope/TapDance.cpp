@@ -1,30 +1,7 @@
 // -*- mode: c++ -*-
 
 #include <Kaleidoscope-Config-TapDance.h>
-#include <Kaleidoscope-TapDance.h>
 #include <Kaleidoscope-Xcode-Shortcuts.h>
-
-namespace jj {
-namespace TapDance {
-namespace {
-
-}
-}
-}
-
-
-namespace jj {
-namespace TapDance {
-
-void configure(void) {
-
-}
-
-namespace {
-
-} // namespace
-} // namespace TapDance
-} // namespacce jj
 
 
 void tapDanceAction(uint8_t tap_dance_index, KeyAddr key_addr, uint8_t tap_count, kaleidoscope::plugin::TapDance::ActionType tap_dance_action) {

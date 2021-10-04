@@ -24,4 +24,4 @@
 
 #pragma once
 
-#include <Kaleidoscope/LEDControl.h>
+#include <kaleidoscope/LEDControl.h>

@@ -24,4 +24,4 @@
 
 #pragma once
 
-#include <Kaleidoscope/Leader.h>
+#include <kaleidoscope/Leader.h>
